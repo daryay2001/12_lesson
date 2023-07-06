@@ -51,12 +51,12 @@
 # self - ссылка на контекст класса, экземпляр класса
 # контекст класса - все что является частью класса (экземпляра)
 # class Car:
-#     name = "no name"
-#     year = 0
+    # name = "no name"
+    # year = 0
 #
 #     # конструктор без параметров (не по умолчанию)
-#     # def __init__(self):
-#     #     self.text = "some text"
+#     def __init__(self):
+#         self.text = "some text"
 #
 #     # конструктор класса - создает экземпляр объекта
 #     # def __new__(cls):
@@ -74,20 +74,20 @@
 #
 #     def show_info(self):
 #         print(f"Name: {self.name} Year: {self.year} Material: {self.material}")
-#
-#     # декоратор - позволяет динамически добавить некий функционал
+# #
+# #     # декоратор - позволяет динамически добавить некий функционал
 #     @staticmethod  # один из стандартных декораторов
 #     def get_class_info():
 #         print("This is Car class")
-#
-#
+# #
+# #
 # toyota = Car("Camry", 2020)
 # print(type(toyota))
 # toyota.show_info()
 # bmw = Car("X5", 2021)
 # print(type(bmw))
 # bmw.show_info()
-#
+# #
 # mers = Car("Test", 2023)
 # print(type(mers))
 # mers.show_info()
@@ -147,52 +147,53 @@
 # Инкапсуляция
 # v1
 
-# class User:
-#     __name: str = "no name"  # private поле, доступно только внутри этого класса
-#     __age: int = 0
-#     __secret: int = 12345
+class User:
+    __name: str = "no name"  # private поле, доступно только внутри этого класса
+    __age: int = 0
+    __secret: int = 12345
 #
-#     def __init__(self, name, age):
-#         self.__name = name
-#         self.__age = age
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
         # применим инкапсуляцию
-        # self.set_name(name)
-        # self.set_age(age)
+        self.set_name(name)
+        self.set_age(age)
 
-    # def set_name(self, name):
-    #     if 2 < len(name) < 50:
-    #         self.__name = name
-    #     else:
-    #         print("Incorrect name length!")
+    def set_name(self, name):
+        if 2 < len(name) < 50:
+            self.__name = name
+        else:
+            print("Incorrect name length!")
     #
-    # def get_name(self):
-    #     return self.__name
+    def get_name(self):
+        return self.__name
     #
-    # def set_age(self, age):
-    #     if 18 < age < 150:
-    #         self.__age = age
-    #     else:
-    #         print("Incorrect age!")
-    #
-    # def get_age(self):
-    #     return self.__age
-    #
-    # def show_info(self):
-    #     print(f"Name: {self.__name} age: {self.__age}")
-    #     self.__secret_info()  # так как мы находимся внутри класса - мы имеем доступ ко ВСЕМУ
+    def set_age(self, age):
+        if 18 < age < 150:
+            self.__age = age
+        else:
+            print("Incorrect age!")
+
+    def get_age(self):
+        return self.__age
+
+    def show_info(self):
+        print(f"Name: {self.__name} age: {self.__age}")
+        self.__secret_info()  # так как мы находимся внутри класса - мы имеем доступ ко ВСЕМУ
         # контенту этого класса, и поэтому мы можем воспользоваться приватной функцией которая НЕДОСТУПНА
         # снаружи этого класса
 
     # __ два нижних подчеркивания означает что эта функция private, то есть доступна ТОЛЬКО внутри класса
     # если мы попытаемся обратиться к этой функции через экземпляр класса - будет ошибка
-#     def __secret_info(self):
-#         print(f"Secret code: {self.__secret}")
+    def __secret_info(self):
+        print(f"Secret code: {self.__secret}")
 #
 #
-# vasya = User("Vasya", 33)
-# vasya.show_info()
-# # print(vasya.__name)
-# vasya.set_age(300)
-# vasya.show_info()
+vasya = User("Vasya", 33)
+vasya.show_info()
+# print(vasya.__name)
+vasya.set_age(300)
+vasya.show_info()
 
-# vasya.__secret_info()
+# vasya.__secret_info() # тут мы не можем обратиться  к данной функции, поскольку
+# эта функция private, то есть доступна ТОЛЬКО внутри класса
